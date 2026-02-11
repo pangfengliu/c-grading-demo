@@ -17,7 +17,7 @@ jobs:
         run: sudo apt-get install -y build-essential
 
       - name: Compile student code
-        run: gcc -o factorial factorial.c
+        run: gcc -o factorial.o factorial.c
 
       - name: Run instructor tests
-        run: gcc -o test_factorial tests/test_factorial.c && ./test_factorial
+        run: gcc -o test_factorial factorial.o test_factorial.c && ./test_factorial
