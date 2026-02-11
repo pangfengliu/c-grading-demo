@@ -1,0 +1,23 @@
+name: C Auto-Grading
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  grade:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install build tools
+        run: sudo apt-get install -y build-essential
+
+      - name: Compile student code
+        run: gcc -o factorial factorial.c
+
+      - name: Run instructor tests
+        run: gcc -o test_factorial tests/test_factorial.c && ./test_factorial
